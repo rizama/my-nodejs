@@ -1,8 +1,8 @@
 // Destructuring function name on other files
-const { add, multiply } = require('./math-utils');
+// const { add, multiply } = require('./math-utils');
 
-add(1,2)
-multiply(1,2)
+// add(1,2)
+// multiply(1,2)
 
 
 // {Object Distructuring}
@@ -50,3 +50,9 @@ console.log(...values);
 // call using object
 const {2:fly} = values
 console.log(fly);
+
+const sayHello = ({name}) => {
+    console.log('Hello ', name);
+}
+
+sayHello(person)    
