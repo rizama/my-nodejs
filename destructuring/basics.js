@@ -1,3 +1,10 @@
+// Destructuring function name on other files
+const { add, multiply } = require('./math-utils');
+
+add(1,2)
+multiply(1,2)
+
+
 // {Object Distructuring}
 const person = {
     name: 'Sam',
