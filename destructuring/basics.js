@@ -32,3 +32,14 @@ console.log(snack);
 console.log(name);
 
 // [Array Destructuring]
+const values = [1,2,3,4]
+
+const [foo, bar, who] = values
+const [, , what] = values
+console.log(foo);
+console.log(what);
+console.log(...values);
+
+// call using object
+const {2:fly} = values
+console.log(fly);
