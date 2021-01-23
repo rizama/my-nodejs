@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require("mongoose");
 const path = require('path');
+const authRoutes = require("./routes/authRoutes");
 
 require('dotenv').config();
 
@@ -30,9 +31,9 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
     .catch((err) => console.log(err));
 
 // routes
-console.log(__dirname);
 app.get('/', (req, res) => res.render('home'));
 app.get('/smoothies', (req, res) => res.render('smoothies'));
+app.use(authRoutes)
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
