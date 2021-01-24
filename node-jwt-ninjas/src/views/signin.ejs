@@ -1,14 +1,16 @@
 <%- include('partials/header'); -%>
 
-<header>
-	<div class="smoothie">
-		<img src="/smoothie.png" alt="" />
-	</div>
-	<div class="headings">
-		<h2>Signin</h2>
-		<!-- <h3>By Ninjas For Ninjas</h3> -->
-		<!-- <a href="/smoothies" class="btn">View Recipes</a> -->
-	</div>
-</header>
+<form action="/signin">
+	<h2>Login</h2>
+	<label for="email">Email</label>
+	<input type="text" name="email" required />
+	<div class="email error">some error</div>
+	<label for="password">Password</label>
+	<input type="password" name="password" required />
+	<div class="password error"></div>
+	<button>login</button>
+</form>
+
+<script src="handleSubmit.js"></script>
 
 <%- include('partials/footer'); -%>
