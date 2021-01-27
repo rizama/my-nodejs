@@ -6,7 +6,7 @@ const handleErrors = (err) => {
     const errors = {
         email: "",
         password: ""
-    }
+    };
 
     if (err.code === 11000) {
         errors.email = "That email has been registered.";
@@ -15,27 +15,27 @@ const handleErrors = (err) => {
 
     if (err.message.includes('user validation failed')) {
         Object.values(err.errors).forEach(({ properties }) => {
-            errors[properties.path] = properties.message
-        })
+            errors[properties.path] = properties.message;
+        });
     }
 
     return errors;
-}
+};
 
 module.exports.signup_get = (req, res) => {
     res.render('signup');
-}
+};
 
 module.exports.signin_get = (req, res) => {
     res.render('signin');
-}
+};
 
 const maxAge = 3 * 24 * 60 * 60; //in second
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.SECRET_STRING, {
         expiresIn: maxAge
-    })
-}
+    });
+};
 
 module.exports.signup_post = async (req, res) => {
     const { email, password } = req.body;
@@ -44,19 +44,25 @@ module.exports.signup_post = async (req, res) => {
         const user = await User.create({
             email, password
         });
-        const token = createToken(user._id)
+        const token = createToken(user._id);
 
-        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 })
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
         res.status(201).json({ user: user._id });
 
     } catch (error) {
-        const errors = handleErrors(error)
+        const errors = handleErrors(error);
         res.status(400).json({ errors });
     }
-}
+};
 
 module.exports.signin_post = async (req, res) => {
     const { email, password } = req.body;
-    res.send('user login');
-}
+
+    try {
+        const user = await User.signin(email, password);
+        res.status(200).send({ user: user._id });
+    } catch (error) {
+        res.status(400).json({});
+    }
+};
