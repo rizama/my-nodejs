@@ -2,11 +2,21 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
 const handleErrors = (err) => {
-    console.log(err.message, err.code);
+
     const errors = {
         email: "",
         password: ""
     };
+
+    console.log(err);
+
+    if (err.message === 'incorrect email') {
+        errors.email = 'that email is not registered';
+    }
+
+    if (err.message === 'incorrect password') {
+        errors.password = 'wrong password';
+    }
 
     if (err.code === 11000) {
         errors.email = "That email has been registered.";
@@ -61,8 +71,14 @@ module.exports.signin_post = async (req, res) => {
 
     try {
         const user = await User.signin(email, password);
+
+        // Give a jwt
+        const token = createToken(user._id);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+
         res.status(200).send({ user: user._id });
     } catch (error) {
-        res.status(400).json({});
+        const errors = handleErrors(error);
+        res.status(400).json({ errors });
     }
 };
