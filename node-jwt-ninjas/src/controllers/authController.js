@@ -72,8 +72,10 @@ module.exports.signin_post = async (req, res) => {
     try {
         const user = await User.signin(email, password);
 
-        // Give a jwt
+        // Create a jwt
         const token = createToken(user._id);
+        
+        // set jwt in cookies
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
         res.status(200).send({ user: user._id });
