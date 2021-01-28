@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const path = require('path');
 const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
+const { requireAuth } = require("./middleware/authMiddleware");
 
 require('dotenv').config();
 
@@ -23,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
 // view engine
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // database connection
@@ -34,8 +35,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
 
 // routes
 app.get('/', (req, res) => res.render('home'));
-app.get('/smoothies', (req, res) => res.render('smoothies'));
-app.use(authRoutes)
+app.get('/smoothies', requireAuth, (req, res) => res.render('smoothies'));
+app.use(authRoutes);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
