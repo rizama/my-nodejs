@@ -74,7 +74,7 @@ module.exports.signin_post = async (req, res) => {
 
         // Create a jwt
         const token = createToken(user._id);
-        
+
         // set jwt in cookies
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
 
@@ -83,4 +83,9 @@ module.exports.signin_post = async (req, res) => {
         const errors = handleErrors(error);
         res.status(400).json({ errors });
     }
+};
+
+module.exports.signout_get = (req, res) => {
+    res.cookie('jwt', '', { maxAge: 1 });
+    res.redirect('/');
 };
