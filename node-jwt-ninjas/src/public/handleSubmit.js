@@ -1,6 +1,6 @@
 const form = document.querySelector("form");
 const emailError = document.querySelector(".email.error")
-const passwordError = document.querySelector(".password.error")
+const passwordEmailError = document.querySelector(".password.email.error")
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -25,8 +25,8 @@ form.addEventListener("submit", async (e) => {
         console.log(data);
 
         if (data.errors) {
-            emailError.textContent = data.errors.email
-            passwordError.textContent = data.errors.password
+            // emailError.textContent = data.errors.email
+            passwordEmailError.textContent = data.errors.password
         }
 
         if (data.user) {
