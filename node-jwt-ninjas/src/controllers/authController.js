@@ -11,15 +11,15 @@ const handleErrors = (err) => {
     console.log(err);
 
     if (err.message === 'incorrect email') {
-        errors.email = 'that email is not registered';
+        errors.email = 'Email or/and Password is Incorrect';
     }
 
     if (err.message === 'incorrect password') {
-        errors.password = 'wrong password';
+        errors.password = 'Email or/and Password is Incorrect';
     }
 
     if (err.code === 11000) {
-        errors.email = "That email has been registered.";
+        errors.email = "Email or/and Password is Incorrect";
         return errors;
     }
 
