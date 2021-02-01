@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 const path = require('path');
+const authRoute = require("./routes/auth-routes");
 
 require('dotenv').config();
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(authRoute);
 app.get('/', (req, res) => {
   res.render('home');
 });
