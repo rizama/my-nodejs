@@ -7,6 +7,8 @@ const authRoute = require("./routes/auth-routes");
 
 require('dotenv').config();
 
+require("./config/passportSetup");
+
 const middlewares = require('./middlewares');
 const api = require('./api');
 
@@ -22,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(authRoute);
+app.use('/auth', authRoute);
 app.get('/', (req, res) => {
   res.render('home');
 });
