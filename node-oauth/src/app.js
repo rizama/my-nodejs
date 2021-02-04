@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const path = require('path');
 const authRoute = require("./routes/auth-routes");
+const mongoose = require("mongoose");
 
 require('dotenv').config();
 
@@ -23,6 +24,12 @@ app.use(express.urlencoded({ extended: true }));
 // view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// connect mongodb
+const dbURI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.khpxa.mongodb.net/${process.env.MONGO_DBNAME}`;
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+  .then((result) => console.log("Connected To Mongodb"))
+  .catch((e) => console.log(e));
 
 app.use('/auth', authRoute);
 app.get('/', (req, res) => {
