@@ -40,6 +40,6 @@ userSchema.statics.signin = async function (email, pass) {
     throw Error('incorrect email');
 };
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('user', userSchema); //in Collection Mongodb User will be Plural 'users'
 
 module.exports = User;
