@@ -24,7 +24,6 @@ passport.use(
         });
 
         if (currentUser) {
-            console.log("user is", currentUser);
             cb(null, currentUser);
         } else {
             const user = await User.create({
