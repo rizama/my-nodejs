@@ -46,7 +46,7 @@ app.use('/auth', authRoute);
 app.use('/profile', profileRoutes);
 
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('home', { user: req.user });
 });
 
 app.use('/api/v1', api);
