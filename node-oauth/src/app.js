@@ -5,6 +5,8 @@ const cors = require('cors');
 const path = require('path');
 const authRoute = require("./routes/auth-routes");
 const mongoose = require("mongoose");
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
 
 require('dotenv').config();
 
@@ -20,10 +22,18 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser({
+  maxAge: 24 * 60 * 60 * 1000,
+  key: [process.env.KEY_SESSION_COOKIE]
+}));
 
 // view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // connect mongodb
 const dbURI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.khpxa.mongodb.net/${process.env.MONGO_DBNAME}`;
