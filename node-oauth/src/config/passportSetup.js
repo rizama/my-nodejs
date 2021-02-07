@@ -6,9 +6,9 @@ passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
-passport.deserializeUser(async (id, done) => {
+passport.deserializeUser(async (id, next) => {
     const user = await User.findById(id);
-    done(null, user);
+    next(null, user);
 });
 
 passport.use(
@@ -17,7 +17,7 @@ passport.use(
         callbackURL: '/auth/google/redirect',
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET
-    }, async (accessToken, refreshToken, profile, done) => {
+    }, async (accessToken, refreshToken, profile, next) => {
         // Check if User Exist in out DB
         let currentUser = await User.findOne({
             googleId: profile.id
@@ -25,14 +25,14 @@ passport.use(
 
         if (currentUser) {
             console.log("user is", currentUser);
-            done(null, currentUser);
+            next(null, currentUser);
         } else {
             const user = await User.create({
                 username: profile.displayName,
                 googleId: profile.id,
                 email: profile._json.email
             });
-            done(null, user);
+            next(null, user);
         }
 
     })
