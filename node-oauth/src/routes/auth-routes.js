@@ -21,9 +21,6 @@ router.get('/google', passport.authenticate('google', {
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
     // res.send(req.user);
-    res.cookie('sam', process.env.KEY_SESSION_COOKIE, {
-        maxAge: 12 * 60 * 60 * 1000
-    });
     res.redirect('/profile');
 });
 
