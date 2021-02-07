@@ -9,7 +9,8 @@ const userSchema = new Schema({
         required: [true, 'Please enter an email'],
         unique: true,
         lowercase: true,
-    }
+    },
+    thumbnail: String
 });
 
 const User = mongoose.model('user', userSchema); //in Collection Mongodb User will be Plural 'users'
