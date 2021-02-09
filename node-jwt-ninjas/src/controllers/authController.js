@@ -40,7 +40,7 @@ module.exports.signin_get = (req, res) => {
     res.render('signin');
 };
 
-const maxAge = 3 * 24 * 60 * 60; //in second
+const maxAge = 3 * 24 * 60 * 60; //3 days in seconds
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.SECRET_STRING, {
         expiresIn: maxAge
