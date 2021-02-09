@@ -7,7 +7,9 @@ const authRoute = require("./routes/auth-routes");
 const profileRoutes = require('./routes/profile-routes');
 const mongoose = require("mongoose");
 const cookieSession = require('cookie-session');
+const cookieParser = require("cookie-parser");
 const passport = require('passport');
+const { requireAuth, checkUser } = require("./middlewares/authMiddleware");
 
 require('dotenv').config();
 
@@ -27,6 +29,7 @@ app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000,
   keys: [process.env.KEY_SESSION_COOKIE]
 }));
+app.use(cookieParser());
 
 // view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +45,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
   .then((result) => console.log("Connected To Mongodb"))
   .catch((e) => console.log(e));
 
+app.get('*', checkUser);
+app.get('/sam', requireAuth, (req, res) => res.send("This Route just using JWT Cookies Checking"));
 app.use('/auth', authRoute);
 app.use('/profile', profileRoutes);
 
