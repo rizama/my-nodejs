@@ -58,6 +58,7 @@
 				<% } %>
 				<li><a href="/">Homepage</a></li>
 				<li><a href="/profile">Profile</a></li>
+				<li><a href="/sam">Sam</a></li>
 			</ul>
 		</nav>
 		<header>
@@ -66,6 +67,10 @@
 		<main>
 			<img src="<%= user.thumbnail %>" />
 			<p>This is your profile thumbnail</p>
+			<% if(user_2) {%>
+			<p>Username: <%= user_2.username %></p>
+			<% }%>
+			<p></p>
 		</main>
 	</body>
 </html>
