@@ -28,8 +28,19 @@ bot.command('send_photo', ctx => {
     bot.telegram.sendPhoto(ctx.chat.id, "AgACAgUAAxkBAAO3YC0oUnc15neXHW96ogX1SqCoxNAAAkuvMRuif2hV_ZbsaWUtLY5aOSFtdAADAQADAgADbQADdJQDAAEeBA");
 });
 
-// bot.on('message', ctx => {
-//     console.log(ctx.message);
-// })
+bot.command('surabaya', ctx => {
+    bot.telegram.sendPhoto(ctx.chat.id, { source: `${appDir}/res/surabaya.jpg` });
+});
+
+bot.command('surabaya_with_reply', ctx => {
+    bot.telegram.sendChatAction(ctx.chat.id, 'upload_photo');
+    bot.telegram.sendPhoto(ctx.chat.id,
+        {
+            source: `${appDir}/res/surabaya.jpg`
+        },
+        {
+            reply_to_message_id: ctx.message.message_id
+        });
+});
 
 bot.launch();
