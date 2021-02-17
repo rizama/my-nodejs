@@ -7,7 +7,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 const helpMessage = `
 Referensi Help : 
 /surabaya  - mendapatkan gambar untuk surabaya
-/jakarta   - mendapatkan gif dari Jakarta 
+/patrick   - mendapatkan gif dari patrick
 /malang   - mendapatkan lokasi dari malang
 /cities   - mendapatkan foto dari kota
 /citieslist   - mendapatkan text file kota
@@ -50,4 +50,19 @@ bot.command('patrick', ctx => {
             reply_to_message_id: ctx.message.message_id
         });
 });
+
+bot.command('cities', ctx => {
+    let listCities = ['bandung.jpg', 'batu.jpg', 'jakarta.jpg', 'malang.jpg', 'surabaya.jpg'];
+    let cities = listCities.map(data => {
+        return {
+            type: 'photo',
+            media: {
+                source: `${appDir}/res/${data}`
+            }
+        };
+    });
+    bot.telegram.sendChatAction(ctx.chat.id, 'upload_photo');
+    bot.telegram.sendMediaGroup(ctx.chat.id, cities);
+});
+
 bot.launch();
