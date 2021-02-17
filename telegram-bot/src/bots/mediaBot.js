@@ -43,4 +43,11 @@ bot.command('surabaya_with_reply', ctx => {
         });
 });
 
+bot.command('patrick', ctx => {
+    bot.telegram.sendChatAction(ctx.chat.id, 'upload_video');
+    bot.telegram.sendAnimation(ctx.chat.id, "https://media2.giphy.com/media/5n5IIVf35HBPNOwau8/200_d.gif",
+        {
+            reply_to_message_id: ctx.message.message_id
+        });
+});
 bot.launch();
