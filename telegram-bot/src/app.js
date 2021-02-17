@@ -9,7 +9,10 @@ require('dotenv').config();
 // require("./bots/basicBot");
 
 // Echo Bot (Logging)
-require("./bots/echoBot");
+// require("./bots/echoBot");
+
+// Media Bot
+require("./bots/mediaBot");
 
 const middlewares = require('./middlewares');
 const api = require('./api');
