@@ -8,7 +8,7 @@ const helpMessage = `
 Referensi Help : 
 /surabaya  - mendapatkan gambar untuk surabaya
 /patrick   - mendapatkan gif dari patrick
-/malang   - mendapatkan lokasi dari malang
+/bandung   - mendapatkan lokasi dari malang
 /cities   - mendapatkan foto dari kota
 /citieslist   - mendapatkan text file kota
 `;
@@ -80,4 +80,25 @@ bot.command('citieslist', ctx => {
 bot.command('bandung', ctx => {
     bot.telegram.sendLocation(ctx.chat.id, -6.90389, 107.61861);
 });
+
+bot.on('message', async (ctx) => {
+    if (ctx.message.document) {
+        try {
+            let link = await bot.telegram.getFileLink(ctx.message.document.file_id);
+            ctx.reply(`Link: ${link}`);
+        } catch (error) {
+            console.log(error);
+            ctx.reply(error.message);
+        }
+    } else if (ctx.message.photo) {
+        try {
+            let link = await bot.telegram.getFileLink(ctx.message.photo[0].file_id);
+            ctx.reply(`Link: ${link}`);
+        } catch (error) {
+            console.log(error);
+            ctx.reply(error.message);
+        }
+    }
+});
+
 bot.launch();
