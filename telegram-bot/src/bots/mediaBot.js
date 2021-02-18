@@ -65,4 +65,19 @@ bot.command('cities', ctx => {
     bot.telegram.sendMediaGroup(ctx.chat.id, cities);
 });
 
+bot.command('citieslist', ctx => {
+    bot.telegram.sendChatAction(ctx.chat.id, 'upload_document');
+    bot.telegram.sendDocument(ctx.chat.id, {
+        source: `${appDir}/res/cities.txt`
+    },
+        {
+            thumb: {
+                source: `${appDir}/res/bandung.jpg`
+            }
+        });
+});
+
+bot.command('bandung', ctx => {
+    bot.telegram.sendLocation(ctx.chat.id, -6.90389, 107.61861);
+});
 bot.launch();
