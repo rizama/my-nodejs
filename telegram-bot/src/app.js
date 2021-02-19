@@ -15,7 +15,10 @@ require('dotenv').config();
 // require("./bots/mediaBot");
 
 // API Bot
-require("./bots/ApiBot");
+// require("./bots/ApiBot");
+
+// API Bot
+require("./bots/factsBot");
 
 const middlewares = require('./middlewares');
 const api = require('./api');
