@@ -34,3 +34,32 @@ async function getData() {
         console.log(error);
     }
 }
+
+bot.command('fact', (ctx) => {
+    let maxRow = storeData.filter(item => {
+        return (item.row == '1' && item.col == '2');
+    })[0].val;
+
+    let randomInteger = Math.floor(Math.random() * maxRow) + 1;
+    let [fact] = storeData.filter(item => {
+        return (item.row == randomInteger && item.col == '5');
+    });
+
+    let message = `
+    Fact #${fact.row}:
+    ${fact.val}
+    `;
+
+    ctx.reply(message);
+});
+
+bot.command('update', async (ctx) => {
+    try {
+        await getData();
+        ctx.reply("Data Success Updated");
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+bot.launch();
