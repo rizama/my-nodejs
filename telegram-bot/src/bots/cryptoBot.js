@@ -19,6 +19,9 @@ const menu = (ctx) => {
                 ],
                 [
                     { text: "Coin Market Cap", url: "https://www.cryptocompare.com/" }
+                ],
+                [
+                    { text: "Bot Info", callback_data: "info" }
                 ]
             ]
         }
@@ -85,6 +88,38 @@ bot.action(['price-btc', 'price-eth', 'price-bnb', 'price-ada'], async (ctx) => 
     } catch (error) {
         console.log(error);
     }
+});
+
+bot.action('info', (ctx) => {
+    ctx.answerCbQuery();
+    ctx.reply("BOT Info", {
+        reply_markup: {
+            keyboard: [
+                [
+                    { text: "Credits" },
+                    { text: "API" }
+                ]
+            ],
+            resize_keyboard: true,
+            one_time_keyboard: true
+        }
+    });
+});
+
+bot.hears('Credits', ctx => {
+    ctx.reply("BOT Dibuat oleh RizamaBot");
+});
+
+bot.hears('API', ctx => {
+    ctx.reply("API menggunakan https://cryptocompare.com");
+});
+
+bot.hears("hilangkan keyboard", (ctx) => {
+    ctx.reply("keyboard dihilangkan", {
+        reply_markup: {
+            remove_keyboard: true
+        }
+    })
 });
 
 bot.launch();
