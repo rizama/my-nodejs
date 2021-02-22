@@ -5,10 +5,6 @@ const { axiosGet, readfile } = require("../utils");
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-const helpMessage = `
-Crypto Bot
-`;
-
 const menu = (ctx) => {
     const message = 'Welcome, This boot will provide information about the crypto currency';
     ctx.reply(message, {
