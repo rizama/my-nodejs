@@ -98,7 +98,10 @@ exports.axiosPost = async (url, body) => {
     url,
     method: 'POST',
     timeout: 30000,
-    data: body
+    data: body,
+    headers: {
+      'Content-Type': 'Application/json'
+    }
   };
   try {
     const response = await axios(options);
