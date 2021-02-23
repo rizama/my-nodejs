@@ -24,7 +24,10 @@ require('dotenv').config();
 // require("./bots/cryptoBot");
 
 // Chanel Bot
-require("./bots/channelFeedBot");
+// require("./bots/channelFeedBot");
+
+// Chanel Bot
+require("./bots/botWithMysql");
 
 const middlewares = require('./middlewares');
 const api = require('./api');
