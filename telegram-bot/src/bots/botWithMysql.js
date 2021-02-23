@@ -12,6 +12,8 @@ const conn = mysql.createConnection({
     database: "bot"
 });
 
+let dataStore = [];
+
 conn.connect(function (err) {
     if (err) {
         throw err;
@@ -22,7 +24,6 @@ conn.connect(function (err) {
         if (err) {
             throw err;
         }
-        dataStore = [];
         // console.log(result);
         result.forEach(item => {
             // console.log(item.name);
