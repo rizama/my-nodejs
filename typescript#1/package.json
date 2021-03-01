@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "rm -rf build/ && tsc",
     "ts": "rm -rf build/ && tsc -w",
-    "dev": "nodemon ./build/dataType.js"
+    "dev": "nodemon ./build/enum.js"
   },
   "keywords": [
     "typescript",
