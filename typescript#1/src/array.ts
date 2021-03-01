@@ -7,3 +7,7 @@ arrayListString = ["1", "2"];
 
 let arrayList: any[];
 arrayList = [1, 2, "3", [1, 2], { key: "value" }];
+
+// tuples (Array tapi terbatas)
+let biodata: [string, number];
+biodata = ["sam", 25];
