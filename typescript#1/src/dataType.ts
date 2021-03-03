@@ -18,3 +18,8 @@ heroes = true;
 heroes = {
 	key: "value",
 };
+
+// Union
+let phone: number | string;
+phone = "085659122123"
+phone = 6285659122123
