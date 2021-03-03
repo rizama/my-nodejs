@@ -25,3 +25,8 @@ const Add: Tambah = (val1: number, val2: number) => {
 const fullname = (first: string, last: string = "Pratama"): string => {
 	return first + last;
 }
+
+// Optional Parameter
+const getUmur = (first: string, last?: string): string => {
+	return first + last;
+}
