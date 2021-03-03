@@ -20,3 +20,8 @@ type Tambah = (val1: number, val2: number) => number;
 const Add: Tambah = (val1: number, val2: number) => {
 	return val1 + val2;
 };
+
+// Default Parameter
+const fullname = (first: string, last: string = "Pratama"): string => {
+	return first + last;
+}
