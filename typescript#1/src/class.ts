@@ -41,10 +41,11 @@ class Admin extends User {
 	read: boolean = true;
 	write: boolean = true;
 	phone: string;
+	private _email: string = "rizkysam@gmail.com";
 
-	constructor(phone: string, name: string, age: number){
+	constructor(phone: string, name: string, age: number) {
 		super(name, age);
-		this.phone = phone
+		this.phone = phone;
 	}
 
 	getRole(): { read: boolean; write: boolean } {
@@ -53,10 +54,20 @@ class Admin extends User {
 			write: this.write,
 		};
 	}
+
+	set email(value: string) {
+		this._email;
+	}
+
+	get email(): string {
+		return this._email;
+	}
 }
 
 let admin = new Admin("098888888", "sam", 25);
 admin.getName();
 admin.getRole();
 admin.setName("samsudin");
-admin.phone
+admin.phone;
+admin.email = "ahaha@gmail.com";
+admin.email
