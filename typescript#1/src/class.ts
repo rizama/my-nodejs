@@ -42,6 +42,7 @@ class Admin extends User {
 	write: boolean = true;
 	phone: string;
 	private _email: string = "rizkysam@gmail.com";
+	static getRoleName: string = "Admin";
 
 	constructor(phone: string, name: string, age: number) {
 		super(name, age);
@@ -62,12 +63,24 @@ class Admin extends User {
 	get email(): string {
 		return this._email;
 	}
+
+	static getNameDummy(): string {
+		return "lorem";
+	}
 }
 
 let admin = new Admin("098888888", "sam", 25);
 admin.getName();
 admin.getRole();
 admin.setName("samsudin");
+
+// constructor
 admin.phone;
+
+// Setter Getter
 admin.email = "ahaha@gmail.com";
-admin.email
+admin.email;
+
+// Property and Method
+let roleName = Admin.getRoleName;
+let dummy = Admin.getNameDummy();
